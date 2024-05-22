@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/etc/udev/usb_check.sh %s{idVendor} %s{idProduct} $env{DEVPATH} %k"
