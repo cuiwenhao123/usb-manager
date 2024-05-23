@@ -1,6 +1,7 @@
 # usb-manager
 This is a solution which solved usb-class management problem in linux. It can authorized you trust usb deviecs by a whitelist,or it disauthorized usb devices that you cannot trust and cannot use it in your system.
 
+#  设计过程
 ## 1、创建白名单文件
 首先，创建一个白名单文件，比如：/etc/udev/usb_whitelist.txt，其中包含允许访问的VID和PID：
   1234
@@ -22,3 +23,14 @@ DEVPATH环境变量包含了设备在/sys文件系统中的路径。例如/devic
 
 ## 4、编写系统或软件启动时系统USB设备认证脚本
 在/etc/udev/下创建add_sysusb.sh脚本，里面编写脚本。当系统开启时，或授权软件开启时，先执行此脚本，将保证系统正常运行的USB的UID、VID添加到管控白名单中。
+
+# Install
+## 环境搭建
+cd usb-manager/
+sudo cp add_sysusb.sh usb_check.sh usb_whitelist.txt /etc/udev/
+sudo cp 99-usb-vid-pid-check.rules /etc/udev/rules.d/
+cd /etc/udev/
+sudo chmod +x add_sysusb.sh usb_check.sh
+./add_sysusb.sh
+## 插入USB设备后查看控制信息
+cat /var/log/syslog |grep root
