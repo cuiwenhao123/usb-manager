@@ -27,10 +27,15 @@ DEVPATH环境变量包含了设备在/sys文件系统中的路径。例如/devic
 # Install
 ## 环境搭建
 cd usb-manager/
+
 sudo cp add_sysusb.sh usb_check.sh usb_whitelist.txt /etc/udev/
+
 sudo cp 99-usb-vid-pid-check.rules /etc/udev/rules.d/
+
 cd /etc/udev/
+
 sudo chmod +x add_sysusb.sh usb_check.sh
+
 ./add_sysusb.sh
 ## 插入USB设备后查看控制信息
 cat /var/log/syslog |grep root
