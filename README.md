@@ -9,7 +9,7 @@ This is a solution which solved usb-class management problem in linux. It can au
 
 ## ２、编写udev规则
 在/etc/udev/rules.d/下创建99-usb-vid-pid-check.rules规则文件，编写udev规则：
-  ACTION=="add",SUBSYSTEM=="usb",RUN+="/etc/udev/usb_check %s{idVendor} %s{idProduct} $env{DEVPATH}"
+  ACTION=="add",SUBSYSTEM=="usb",RUN+="/etc/udev/usb_check %s{idVendor} %s{idProduct} $env{DEVPATH} %k"
 
 DEVPATH环境变量包含了设备在/sys文件系统中的路径。例如/devices/pci0000:00/0000:00:15.0/0000:03:00.0/usb4/4-1，路径下的文件代表usb设备文件以及usb设备接口文件。
 
